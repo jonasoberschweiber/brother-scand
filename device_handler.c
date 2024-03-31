@@ -174,8 +174,8 @@ device_handler_add_device(struct device_config *config)
         return NULL;
     }
 
-    if (dev_config->local_ip != NULL) {
-      strncpy(local_ip, dev_config->local_ip, 15);
+    if (config->local_ip != NULL) {
+      strncpy(local_ip, config->local_ip, 15);
       rc = 0;
     } else {
       rc = brother_conn_get_local_ip(conn, local_ip);
@@ -355,7 +355,7 @@ device_handler_stop(void *arg)
         TAILQ_REMOVE(&g_dev_handler.devices, dev, tailq);
         snmp_get_printer_status(g_dev_handler.button_conn, buf, sizeof(buf),
                                 dev->ip);
-        if (dev_config->local_ip != NULL) {
+        if (dev->local_ip != NULL) {
           strncpy(ip, dev->local_ip, 15);
         } else {
           brother_conn_get_local_ip(g_dev_handler.button_conn, ip);
