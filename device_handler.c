@@ -355,8 +355,8 @@ device_handler_stop(void *arg)
         TAILQ_REMOVE(&g_dev_handler.devices, dev, tailq);
         snmp_get_printer_status(g_dev_handler.button_conn, buf, sizeof(buf),
                                 dev->ip);
-        if (dev->local_ip != NULL) {
-          strncpy(ip, dev->local_ip, 15);
+        if (dev->config->local_ip != NULL) {
+          strncpy(ip, dev->config->local_ip, 15);
         } else {
           brother_conn_get_local_ip(g_dev_handler.button_conn, ip);
         }
