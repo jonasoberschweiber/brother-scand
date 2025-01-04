@@ -191,7 +191,7 @@ device_handler_add_device(struct device_config *config)
     status = snmp_get_printer_status(g_dev_handler.button_conn, buf,
                                      sizeof(buf), inet_addr(config->ip));
 
-    if (status != 10001 && status != 10006 && status != 40000 && status != 40038 ) {  // 10001: normal. 10006: low ink. 40038: empty ink. 40000: unknown but OK.
+    if (status != 10001 && status != 10006 && status != 10209 && status != 40000 && status != 40038 ) {  // 10001: normal. 10006: low ink. 10209: low toner. 40038: empty ink. 40000: unknown but OK.
       LOG_ERR("Error: device at %s is unreachable. (status: %d)\n", config->ip,
               status);
       return NULL;
